@@ -491,7 +491,7 @@ private func setFrame(_ window: AXUIElement, _ topLeft: Point?, _ size: CGSize?,
     try job.checkCancellation()
     // macOS ignores shrinking a window that already spans onto another display.
     // Slide it back so it no longer spans, resize it, then move it into place.
-    if let size, let topLeft, let actual = window.get(Ax.sizeAttr),
+    if let size, let topLeft, let actual = window.getIndividual(Ax.sizeAttr),
        actual.width > size.width + 1 || actual.height > size.height + 1,
        spansMultipleDisplays(topLeft, actual),
        spanFixCooldown.tryAcquire(window)
